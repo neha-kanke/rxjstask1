@@ -1,0 +1,23 @@
+<h2 class="text-info"> todo form</h2>
+<form [formGroup]="todoform" (ngSubmit)="onaddtodo()" class="todof">
+    <div class="form-group">
+        <input type="text" class="form-control" formControlName="todolist">
+        <span class="text-danger"
+            *ngIf="todoform.controls['todolist'].touched && todoform.controls['todolist'].hasError('required')">
+            this filed is required !!!</span>
+        <ng-container *ngIf="todoform.controls['todolist'].dirty">
+            <span class="text-danger" *ngIf="todoform.controls['todolist'].hasError('minlength')">
+                the minlength is required is {{todoform.controls['todolist'].errors?.['minlength'].requiredLength}}
+                and actual length is {{todoform.controls['todolist'].errors?.['minlength'].actualLength}}
+            </span>
+            <span class="text-danger" *ngIf="todoform.controls['todolist'].hasError('maxlength')">
+                the maxlength is required length is
+                {{todoform.controls['todolist'].errors?.['maxlength'].requiredLength}}
+                and actualLength is {{todoform.controls['todolist'].errors?.['maxlength'].actualLength}}
+            </span>
+        </ng-container>
+    </div>
+    <button class="btn btn-outline-success btn-block" *ngIf="!iseditbtn" [disabled]="todoform.invalid">Add todo</button>
+    <button class="btn btn-outline-info btn-block" type="button" *ngIf="iseditbtn" (click)="onupdatebt()">update
+        todo</button>
+</form>

@@ -1,0 +1,16 @@
+<h2 class="text-info ">todo list</h2>
+<ul class="list-group" *ngIf="todoarr.length>0;else data">
+    <li class="list-group-item d-flex justify-content-between mb-3" *ngFor="let todo of todoarr">
+        <strong>
+            {{todo.todolist}}
+        </strong>
+        <span>
+            <button class="btn btn-success" (click)="oneditbtn(todo)">Edit</button>
+            <button class="btn btn-danger ml-3"(click)="ondelete(todo)">Delete</button>
+        </span>
+    </li>
+
+</ul>
+<ng-template #data >
+    <p class="alert alert-danger">list is not avaible here !!!</p>
+</ng-template>
